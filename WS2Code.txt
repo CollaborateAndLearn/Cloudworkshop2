@@ -1,0 +1,122 @@
+
+Create DynamoDb Table
+-----------------------------
+1. Choose DynamoDb from AWS services
+2. Click Create Table
+3. Give table name "UserAccount" and Partition Key "UserId" with type Number.
+4. Click Create and once created, you can see the table in Tables under DynamoDb.
+5. Items will show the data inside it.
+
+Create Lambda Function to Create user account
+--------------------------------------------------------
+1. Choode Lambda from AWS services.
+2. Click Create Function
+3. Choose Author From Scratch
+4. give function name "CreateUserAccount"
+5. Choose Run time "python"
+6. expand "change default execution role" and choose "Create a new role from AWS policy templates"
+7. Give role name as "UserAccountCreationRole" (this is the role use to access DynamoDb from lambda)
+8. Click Create Function
+9. once created, go to lambda function "CreateUserAccount" and paste below Code #1 and Click Deploy. this will put a document to the DynamoDb table.
+
+Attaching Policy for Lambda to access DynamoDB
+
+10. Choose IAM from AWS services.
+11. Select Roles from side nav.
+12. search for " UserAccountCreationRole" role and click on it.
+13. Click on Attach policies and attach below policies to it.
+	AmazonDynamoDBFullAccess
+	AWSLambdaInvocation-DynamoDB
+
+to test the function,
+14  Click Test and give event name as "TestAccountCreation" and give below JSON in value.
+{
+  "userid": 3,
+  "name": "John Doe",
+   "email": "john.doe@test.com",
+  "dob": "07/19/1990",
+}
+15. Save the event and Click test again and check if any issues.
+
+Create API Gateway API
+--------------------------------
+1. Choose API gateway from AWS services.
+2. Choose Create API -> REST API -> Build
+3. Select REST (auto selected) and New API
+4. give API name as "ManageUserAccount" and click Create API
+5. Choose the "/" and Click Create Resource under Actions Dropdown
+6. give Resource name as "useraccount" and Create Resource
+7. click /useraccount and select Create Method under Actions Dropdown
+8. Select POST and click on check icon
+9. Choose Integration Type Lambda Function and give "CreateUserAccount" in Lamda function input box (auto complete) and Save.
+10. you can test the API by clicking the TEST text after creation without deploying.
+11. Click on the POST and select Deploy API from Actions dropdown.
+12. Give the stage name as "test" and click Deploy.
+13. copy the URL and and append "/useraccount" and test from PostMan or any other API testing client. You can use the same JSON we used to test the Lambda function and verify data is loaded into dynamo DB.
+
+Follow the same steps with different Function name and API name for getting the saved user account and you can use Code #2 for getting the item from DynamoDb using lambda.
+
+
+Code #1
+import boto3
+
+
+def lambda_handler(event, context):
+
+   client = boto3.resource('dynamodb')
+
+   table = client.Table('UserAccount')
+
+   response = table.put_item(
+
+       Item={
+        'UserId': event['userid'],
+        'name': event['name'],
+	  'email': event['email'],
+	  'dob': event['dob'],
+       }
+
+   )
+
+   return {
+
+    'statusCode': response['ResponseMetadata']['HTTPStatusCode'],
+
+    'body': 'Record ' + event['name'] + ' added'
+
+   }
+
+Code #2
+import boto3
+
+
+def lambda_handler(event, context):
+
+    client = boto3.resource('dynamodb')
+
+    table = client.Table('UserAccount')
+
+    response = table.get_item(
+
+        Key={
+
+            'UserId': event['userid']
+
+        }
+
+    )
+
+    if 'Item' in response:
+
+        return response['Item']
+
+    else:
+
+        return {
+
+            'statusCode': '404',
+
+            'body': 'Not found'
+
+        }
+
