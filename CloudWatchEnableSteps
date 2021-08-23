@@ -1,0 +1,41 @@
+Steps:
+
+1) Create an IAM role for step function with default managed AWS policy(AWSLambdaRole).
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Effect": "Allow",
+"Action": [
+"lambda:InvokeFunction"
+],
+"Resource": [
+"*"
+]
+}
+]
+}
+
+2) Create a policy to allow cloudwatch and logs to the resource
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Effect":"Allow",
+"Action":[
+"logs:*",
+"cloudwatch:*"
+],
+"Resource":"*"
+}
+]
+}
+
+3) Attach this policy to the created role
+4) UPdate the step function IAM role with this role.
+5) Allow all logs to cloudwatch by selecting ALL in dropdown for logs section. Enter new Cloudwatch loggroup name.
+6) Click save and step function is now enabled with cloudwatch logs.
+7) CLick start new execution and wait for few minutes to logs to be sent to cloudwatch.
+
+8) Using cloudwatch event rule you can schedule the trigger to this step function at any interval. CLick cloudwatch -> Events -> Rule -> Create new rule.
