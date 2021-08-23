@@ -1,0 +1,91 @@
+Step 1: Create an IAM Role for API Gateway
+
+Before you create your API Gateway API, you need to give API Gateway permission to call Step Functions API actions.
+
+##To set up permissions for API Gateway
+
+1.Sign in to the IAM console and choose Roles, Create role.
+
+2.On the Select type of trusted entity page, under AWS service, select API Gateway from the list, and then choose Next: Permissions.
+
+3.On the Attached permissions policy page, choose Next: Tags.
+
+4.On the Review page, enter APIGatewayToStepFunctions for Role name, and then choose Create role.
+
+5.The IAM role appears in the list of roles.
+
+6.Choose the name of your role and note the Role ARN, as shown in the following example.
+
+arn:aws:iam::123456789012:role/APIGatewayToStepFunctions
+
+###To attach a policy to the IAM role
+
+1.On the Roles page, search for your role (APIGatewayToStepFunctions), and then choose the role.
+
+2.On the Permissions tab, choose Attach Policy.
+
+3.On the Attach Policy page, search for AWSStepFunctionsFullAccess, choose the policy, and then choose Attach Policy.
+
+Step 2: Create your API Gateway API
+After you create your IAM role, you can create your custom API Gateway API.
+
+##To create the API
+
+1.Open the Amazon API Gateway console.
+
+2.On the REST API pane, choose Build.
+
+3.Choose New API.
+
+4.In the Settings section, enter ManagerUserAccount for the API name, and then choose Create API.
+
+##To create a resource
+
+1. On the Resources page of ManagerUserAccount, choose Actions, Create Resource.
+
+2.On the New Child Resource page, enter execution for Resource Name, and then choose Create Resource.
+
+###To create a POST method
+
+1.On the /execution Methods page, choose Actions, Create Method.
+
+2.From the list, choose POST, and then select the check mark.
+
+
+##To configure the integration point for your method
+
+1.On the /execution - POST - Setup page, for Integration Type, choose AWS Service.
+
+2.For AWS Region, choose a Region from the list.
+
+3.For AWS Service, choose Step Functions from the list.
+
+4.For HTTP Method, choose POST from the list.
+
+5.For Action Type, choose Use action name.
+
+6.For Action, enter StartExecution.
+
+7.For Execution Role, enter the role ARN of the IAM role that you created earlier, as shown in the following example.
+
+arn:aws:iam::123456789012:role/APIGatewayToStepFunctions
+
+8.Choose Save.
+
+The visual mapping between API Gateway and Step Functions is displayed on the /execution - POST - Method Execution page.
+
+
+Step 3: Test and Deploy the API Gateway API
+Once you have created the API, test and deploy it.
+
+To test the communication between API Gateway and Step Functions
+
+On the /execution - POST - Method Execution page, choose Test.
+
+On the /execution - POST - Method Test page, copy the following request parameters into the Request Body section using the ARN of an existing state machine. ARN of created state machine in last step
+
+{
+   "input": "{}",
+   "name": "MyExecution",
+   "stateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld"
+}
