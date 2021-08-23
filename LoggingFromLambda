@@ -1,0 +1,7 @@
+
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+logger.info("User Account Added" + event['userid'])
+logger.error('something went wrong')
