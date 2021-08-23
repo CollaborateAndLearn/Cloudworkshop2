@@ -9,3 +9,5 @@ Workshop 3 steps:
 5. Associate Step functions to Lambda - refer APIGatewayTOStepFunctionsSteps doc
 6. Enabling Could watch set up - refer CloudWatchEnableSteps 
 7. Execution and verifying logs
+
+NOTE: cftestapi.yml - this file will not be used for this workshop 
