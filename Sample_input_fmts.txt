@@ -1,0 +1,35 @@
+Inside of Generate Template:
+#set($data = $input.path('$'))
+#set($input= "{""ActionType"":""$data.ActionType"",""userid"":$data.userid,""name"":""$data.name"",""email"":""$data.email"",""dob"":""$data.dob""}")
+{
+   
+   "input":"$util.escapeJavaScript($input).replaceAll("\\'","'")",
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+}
+
+=======
+
+
+CreateAccount input:
+
+{
+      
+  "ActionType": "StartExecution",
+  "userid": 89,
+  "name": "Test mkp",
+  "email": "john.doe@test.com",
+  "dob": "07/19/1990",
+  
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+}
+
+delete Account: 
+
+{
+      
+  "ActionType": "delete",
+  "userid": 89,
+  
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+}
+

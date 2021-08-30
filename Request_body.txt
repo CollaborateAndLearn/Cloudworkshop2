@@ -1,0 +1,10 @@
+{
+    "ActionType":"StartExecution",
+   "input":"{\"ActionType\":\"StartExecution\" ,\"userid\":7,\"name\":\"John mkp\",\"email\":\"john2.doe@test.com\",\"dob\":\"07/19/1990\"}",
+   "name": "MyExecution627",
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+
+}
+
+
+https://81v784h6p4.execute-api.us-east-1.amazonaws.com/test

@@ -1,0 +1,24 @@
+{
+   "input": "{ 
+      
+     }",
+      
+  "ActionType": "Open",
+  "userid": 79,
+  "name": "John mkp",
+  "email": "john.doe@test.com",
+  "dob": "07/19/1990",
+  
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+}
+
+{
+    "ActionType": "StartExecution",
+   "input": {"userid": 79,
+  "name": "John mkp",
+  "email": "john.doe@test.com",
+  "dob": "07/19/1990"},
+  
+   "name": "MyExecution2",
+   "stateMachineArn": "arn:aws:states:us-east-1:769286664391:stateMachine:MyStateMachine23"
+}
