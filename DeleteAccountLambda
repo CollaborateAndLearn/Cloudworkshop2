@@ -17,7 +17,7 @@ def lambda_handler(event, context):
        }
 
    )
-   logger.info("User Account Deleted" + event['userid'])
+   logger.info("User Account Deleted" + str(event['userid']))
    return {
 
     'statusCode': response['ResponseMetadata']['HTTPStatusCode'],
