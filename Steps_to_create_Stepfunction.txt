@@ -1,0 +1,12 @@
+1. Open Step functions console and choose  Create StateMachine
+2. On the Define state machine page, choose Author with code snippets.
+   For Type, choose Standard. Enter a Name for your state machine
+3. In the StateMachine definition Page , add the following state Machine code (Statemachine.txt) and Repleace the ARN with 
+  your Lambda ARN and click on NEXT  
+  NOTE :  Replaces the ARN with your own lambda ARN that are create earlier 
+4. On permission Choose to Create New Role and let other other options will be default and Click on Next 
+5. once the Create Statemachine is successfull, Click on Start execution with given input( StateMachine_input.txt)
+   to Test Statemachine. 
+6. Enter the input in Input-optional and click on Start Execution 
+7. To view the output, expand the output section under exeuction details  
+

@@ -1,0 +1,7 @@
+{
+  "ActionType": "StartExecution",
+  "userid": 77,
+  "name": "John mkp",
+  "email": "john.doe@test.com",
+  "dob": "07/19/1990"
+}
