@@ -5,11 +5,12 @@ Workshop 3 steps:
 1. Dynamo DB Table creation - refer WS3Code.txt file.
 2. Lambda Creation for Add Account and Delete Account with Cloud watch logging code. - refer WS2Code.txt and DeleteAccountLambda file.
 3. IAM Roles for API Gateway to Step functions - refer APIGatewayTOStepFunctionsSteps doc.
-4. API Gateway Creation - refer WS2Code.txt, APIGatewayTOStepFunctionsSteps and Request_body.txt doc. 
-5. Associate Step functions to Lambda - refer StateMachine.txt, sample_input_fmts.txt and APIGatewayTOStepFunctionsSteps doc
-6. Test the API Gateway 
-7. Enabling Could watch set up - refer CloudWatchEnableSteps 
-8. Execution and verifying logs
+4. Create Step function/State machine - refer Steps_to_create_stepFunction.txt and StateMachine_Input.txt
+5. API Gateway Creation - refer WS2Code.txt, APIGatewayTOStepFunctionsSteps and Request_body.txt doc. 
+6. Associate Step functions to Lambda - refer StateMachine.txt, sample_input_fmts.txt and APIGatewayTOStepFunctionsSteps doc
+7. Test the API Gateway 
+8. Enabling Could watch set up - refer CloudWatchEnableSteps 
+9. Execution and verifying logs
 
 
 
